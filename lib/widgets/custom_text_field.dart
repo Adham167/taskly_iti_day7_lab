@@ -6,7 +6,8 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) => value == null || value.isEmpty? "please enter $message" : null,
       controller:controller ,
       decoration: InputDecoration( 
         labelText: message,

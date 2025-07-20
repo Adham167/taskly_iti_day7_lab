@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_creen_flutter_app/views/account_creation_view.dart';
 import 'package:multi_creen_flutter_app/widgets/custom_button.dart';
 
 class CustomAnimatedWidget extends StatelessWidget {
@@ -47,7 +48,17 @@ class CustomAnimatedWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32),
-              CustomButton(),
+              CustomButton(
+                onTap:
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return AccountCreationView();
+                        },
+                      ),
+                    ),
+              ),
             ],
           ),
         ),
