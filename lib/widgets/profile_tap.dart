@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_creen_flutter_app/models/completed_task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileTap extends StatefulWidget {
@@ -9,6 +10,8 @@ class ProfileTap extends StatefulWidget {
 }
 
 class _ProfileTapState extends State<ProfileTap> {
+  final completedTasks = CompletedTasksStore.completedTasks;
+
   String firstName = '';
   String lastName = '';
   String email = '';
@@ -50,13 +53,38 @@ class _ProfileTapState extends State<ProfileTap> {
                   children: [
                     const Text(
                       "Account Info",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     _buildInfoRow("Full Name", "$firstName $lastName"),
                     _buildInfoRow("Email", email),
                     _buildInfoRow("Job", job),
                     _buildInfoRow("Gender", gender),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Completed Tasks",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: completedTasks.length,
+                      itemBuilder: (context, index) {
+                        final task = completedTasks[index];
+                        return ListTile(
+                          title: Text(task.name),
+                          subtitle: Text('Created by: ${task.createdBy}'),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),

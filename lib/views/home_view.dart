@@ -94,10 +94,10 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${userFirstName} ${userlastName}",
+                    "$userFirstName $userlastName",
                     style: TextStyle(fontSize: 24),
                   ),
-                  Text("${userJopTitle}", style: TextStyle(fontSize: 24)),
+                  Text(userJopTitle, style: TextStyle(fontSize: 24)),
                 ],
               ),
             ),

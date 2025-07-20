@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_creen_flutter_app/models/completed_task.dart';
 import 'package:multi_creen_flutter_app/models/task_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +12,8 @@ class TasksTap extends StatefulWidget {
 
 class _TasksTapState extends State<TasksTap> {
   final TextEditingController _taskController = TextEditingController();
-  List<Task> _tasks = [];
+  static final List<Task> _tasks = [];
+  List<Task> completedTasks = [];
   String _fullName = '';
 
   @override
@@ -40,6 +42,11 @@ class _TasksTapState extends State<TasksTap> {
   }
 
   void _deleteTask(int index) {
+    final task = _tasks[index];
+    if (task.isCompleted) {
+      CompletedTasksStore.completedTasks.remove(task);
+    }
+
     setState(() {
       _tasks.removeAt(index);
     });
@@ -48,6 +55,11 @@ class _TasksTapState extends State<TasksTap> {
   void _toggleComplete(int index) {
     setState(() {
       _tasks[index].isCompleted = !_tasks[index].isCompleted;
+      if (_tasks[index].isCompleted) {
+        CompletedTasksStore.completedTasks.add(_tasks[index]);
+      } else {
+        CompletedTasksStore.completedTasks.remove(_tasks[index]);
+      }
     });
   }
 
