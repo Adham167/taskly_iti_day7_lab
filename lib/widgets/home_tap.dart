@@ -54,8 +54,8 @@ class _HomeTapState extends State<HomeTap> {
                   const SizedBox(height: 12),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      'https://images.unsplash.com/photo-1519125323398-675f0ddb6308',
+                    child: Image.asset(
+                      'assets/a.jpg',
                       height: 200,
                       width: double.infinity,
                       fit: BoxFit.cover,

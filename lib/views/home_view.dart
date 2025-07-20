@@ -18,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
   String userlastName = "Abdelsalam";
   String userJopTitle = "Flutter Developer";
   int _selectedIndex = 0;
-  final List<Widget> _screens = [HomeTap(), TaskTap(), ProfileTap()];
+  final List<Widget> _screens = [HomeTap(), TasksTap(), ProfileTap()];
 
   void _ontapped(int index) {
     setState(() {
@@ -115,7 +115,7 @@ class _HomeViewState extends State<HomeView> {
               leading: Icon(Icons.logout),
               title: Text("Logout"),
               onTap: () async {
-                await SharedPreferencesService.clearUserData(); // ← هنا تستخدمها
+                await SharedPreferencesService.clearUserData(); 
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (_) => const SplashView()),
@@ -131,10 +131,12 @@ class _HomeViewState extends State<HomeView> {
         onTap: _ontapped,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           BottomNavigationBarItem(icon: Icon(Icons.task), label: "Task"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
     );
   }
 }
+
+class TaskTap {}
