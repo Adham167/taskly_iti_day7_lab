@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_creen_flutter_app/services/shared_preferences_service.dart';
+import 'package:multi_creen_flutter_app/views/post_view.dart';
 import 'package:multi_creen_flutter_app/views/splash_view.dart';
 import 'package:multi_creen_flutter_app/widgets/home_tap.dart';
 import 'package:multi_creen_flutter_app/widgets/profile_tap.dart';
@@ -115,12 +116,21 @@ class _HomeViewState extends State<HomeView> {
               leading: Icon(Icons.logout),
               title: Text("Logout"),
               onTap: () async {
-                await SharedPreferencesService.clearUserData(); 
+                await SharedPreferencesService.clearUserData();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (_) => const SplashView()),
                 );
               },
+            ),
+            ListTile(
+              leading: Icon(Icons.podcasts_sharp),
+              title: Text("Posts"),
+              onTap:
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PostView()),
+                  ),
             ),
           ],
         ),

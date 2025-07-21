@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multi_creen_flutter_app/models/completed_task.dart';
+import 'package:multi_creen_flutter_app/models/favorites_store.dart';
+import 'package:multi_creen_flutter_app/views/favourite_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileTap extends StatefulWidget {
@@ -63,6 +65,38 @@ class _ProfileTapState extends State<ProfileTap> {
                     _buildInfoRow("Email", email),
                     _buildInfoRow("Job", job),
                     _buildInfoRow("Gender", gender),
+
+                    Container(
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Favourite Posts = ${FavoritesStore.favoritePosts.length}",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text("Show Favourite posts :"),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return FavouriteView();
+                                      },
+                                    ),
+                                  );
+                                },
+                                icon: Icon(Icons.wrap_text, color: Colors.blue),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                     const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
